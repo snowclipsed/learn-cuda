@@ -1,8 +1,8 @@
 #include<stdlib.h>
 #include<cuda_runtime.h>
 #include<stdio.h>
-#include "tools/helpers.c"
-#include "tools/macros.h"
+#include "../tools/helpers.c"
+#include "../tools/macros.h"
 
 __global__ void vecAddKernel(float* a, float* b, float* c, int n){
     int i = threadIdx.x + blockIdx.x * blockDim.x;
@@ -16,7 +16,7 @@ __global__ void vecAddKernel(float* a, float* b, float* c, int n){
 float* vecAdd(float* a_h, float* b_h, float* c_h, int n){
 
     float* a_d, *b_d, *c_d;
-    int size = n*sizeof(int);
+    int size = n*sizeof(float);
 
     // allocating memory in GPU device
     CHECK_CUDA_ERROR(cudaMalloc((void**)&a_d, size));

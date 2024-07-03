@@ -1,5 +1,20 @@
 {
     "files.associations": {
-        "random": "cpp"
+        "random": "cpp",
+        "array": "c",
+        "bitset": "c",
+        "string_view": "c",
+        "initializer_list": "c",
+        "utility": "c",
+        "__hash_table": "c",
+        "__split_buffer": "c",
+        "deque": "c",
+        "iterator": "c",
+        "queue": "c",
+        "string": "c",
+        "unordered_map": "c",
+        "vector": "c",
+        "cmath": "cpp",
+        "helpers.c": "cpp"
     }
 }
