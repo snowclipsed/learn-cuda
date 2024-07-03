@@ -1,15 +1,8 @@
 #include<stdlib.h>
 #include<cuda_runtime.h>
 #include<stdio.h>
-
-#define CHECK_CUDA_ERROR(call) { \
-    cudaError_t err = (call); \
-    if (err != cudaSuccess) { \
-        fprintf(stderr, "CUDA Error: %s (error code: %d) in file %s at line %d\n", \
-                cudaGetErrorString(err), err, __FILE__, __LINE__); \
-        exit(EXIT_FAILURE); \
-    } \
-}
+#include "tools/helpers.c"
+#include "tools/macros.h"
 
 __global__ void vecAddKernel(float* a, float* b, float* c, int n){
     int i = threadIdx.x + blockIdx.x * blockDim.x;
@@ -19,39 +12,6 @@ __global__ void vecAddKernel(float* a, float* b, float* c, int n){
     }
 }
 
-int* create_random_array(size_t n) {
-    // Allocate memory for the array
-    int *array = (int*)malloc(n * sizeof(int));
-    if (array == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // Populate the array with random integers
-    for (size_t i = 0; i < n; i++) {
-        array[i] = rand();
-    }
-
-    return array;
-}
-
-float* create_array_ones(size_t n){
-
-    float* array = (float*)malloc(n * sizeof(int));
-
-    if (array == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        exit(EXIT_FAILURE);
-    }
-
-    // Populate the array with 1
-    for (size_t i = 0; i < n; i++) {
-        array[i] = 1;
-    }
-
-    return array;
-
-}
 
 float* vecAdd(float* a_h, float* b_h, float* c_h, int n){
 
