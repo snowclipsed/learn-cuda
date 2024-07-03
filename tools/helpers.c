@@ -29,9 +29,10 @@ float* create_array_ones(size_t n){
 
     // Populate the array with 1
     for (size_t i = 0; i < n; i++) {
-        array[i] = 1;
+        array[i] = 1.0f;
     }
 
     return array;
 
 }
+
