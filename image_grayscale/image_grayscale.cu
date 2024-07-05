@@ -39,7 +39,7 @@ int main(){
     CHECK_CUDA_ERROR(cudaMemcpy(img_in_d, img_in_h, size_in, cudaMemcpyHostToDevice));
 
     dim3 blockDim(32, 32, 1);
-    dim3 gridDim(width + blockDim.x -1, height + blockDim.y -1, 1);
+    dim3 gridDim((width + blockDim.x - 1) / blockDim.x, (height + blockDim.y - 1) / blockDim.y, 1);
 
     colortograyscale_kernel<<<gridDim, blockDim>>>(img_in_d, img_out_d, width, height, channels);
 
