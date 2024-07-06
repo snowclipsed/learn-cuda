@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../tools/helpers.c"
 #include "../tools/macros.h"
+#include "../tools/image_processing.c"
 #include <math.h>
 #include <cuda_runtime.h>
 

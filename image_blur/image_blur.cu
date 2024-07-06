@@ -3,6 +3,7 @@
 #include "../tools/helpers.c"
 #include "../tools/macros.h"
 #include <cuda_runtime.h>
+#include "../tools/image_processing.c"
 #define BLUR_SIZE 5
 
 
