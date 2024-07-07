@@ -124,3 +124,11 @@ float measureKernelPerformance(void (*kernel)(void), int numIterations) {
 
     return totalTime / numIterations;
 }
+
+void func_timing(void (*func)()) {
+    clock_t start = clock();
+    func();
+    clock_t end = clock();
+    double elapsed_time = (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Elapsed time: %.6f seconds\n", elapsed_time);
+}
