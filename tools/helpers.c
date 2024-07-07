@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include <cuda_runtime.h>
+#include <time.h>
+#include <math.h>
 
 
 float* create_random_array(size_t n) {
@@ -57,7 +58,7 @@ float* create_matrix_random(int rows, int cols, float max, float min) {
     return array;
 }
 
-float* create_matrix_value(int rows, int cols, float value=1.0f){
+float* create_matrix_value(int rows, int cols, float value){
     float* array = (float*)malloc(cols * rows * sizeof(float));
     if (array == NULL){
         fprintf(stderr, "Memory allocation failed\n");
@@ -97,7 +98,7 @@ int compare_arrays(float* arr1, float* arr2, int size) {
 
 // cuda kernel performance measurement ------
 
-
+/*
 float measureKernelPerformance(void (*kernel)(void), int numIterations) {
     cudaEvent_t start, stop;
     float totalTime = 0.0f;
@@ -124,6 +125,7 @@ float measureKernelPerformance(void (*kernel)(void), int numIterations) {
 
     return totalTime / numIterations;
 }
+*/
 
 void func_timing(void (*func)()) {
     clock_t start = clock();

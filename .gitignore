@@ -184,3 +184,6 @@ cython_debug/
 #.idea/
 learn-cu
 PMPP 4th Edition.pdf
+.vscode/c_cpp_properties.json
+.vscode/launch.json
+.vscode/tasks.json
