@@ -1,2 +1,1 @@
-# learn_triton
-Learning Triton.
+# Learning CUDA
