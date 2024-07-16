@@ -73,7 +73,7 @@ extern "C" void launchMatmul(float *A_h, float *B_h, float *C_h, int* A_dim, int
   CHECK_CUDA_ERROR(cudaMemcpy(B_d, B_h, size_B, cudaMemcpyHostToDevice));
 
   dim3 blockDim(32, 32, 1);
-  dim3 gridDim((A_dim[0] + blockDim.x - 1) / blockDim.x,(A_dim[0] + blockDim.y - 1) / blockDim.y, 1);
+  dim3 gridDim((A_dim[1] + blockDim.x - 1) / blockDim.x,(A_dim[0] + blockDim.y - 1) / blockDim.y, 1);
 
   matmul<<<gridDim, blockDim>>>(A_d, B_d, C_d, A_dim[0], A_dim[1], B_dim[1]);
 
