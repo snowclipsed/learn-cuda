@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "mat_mul.cuh"
 #include "../tools/macros.h"
+#include "cuda_runtime.h"
 
 // Simple matmul kernel
 __global__ void matmul(float *A, float *B, float *C, int A_height, int common, int B_width) {
