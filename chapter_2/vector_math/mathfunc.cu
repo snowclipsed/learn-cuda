@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../tools/helpers.c"
-#include "../tools/macros.h"
+#include "../../tools/helpers.c"
+#include "../../tools/macros.h"
 #include <math.h>
 #include <cuda_runtime.h>
 
@@ -40,10 +40,14 @@ float* apply_func(float* A_h, float* result_h, int choice, int n, int threads=25
     float *A_d, *result_d;
     int size = n * sizeof(float);
     
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&A_d, size));
-    CHECK_CUDA_ERROR(cudaMalloc((void**)&result_d, size));
+    
+    cudaMalloc((void**)&A_d, size);
+    CHECK_CUDA_ERROR()
+    cudaMalloc((void**)&result_d, size);
+    CHECK_CUDA_ERROR();
 
-    CHECK_CUDA_ERROR(cudaMemcpy(A_d, A_h, size, cudaMemcpyHostToDevice));
+    CHECK_CUDA_ERROR();
+    cudaMemcpy(A_d, A_h, size, cudaMemcpyHostToDevice);
     
     int blocks = (n + threads - 1) / threads;
 
@@ -57,7 +61,9 @@ float* apply_func(float* A_h, float* result_h, int choice, int n, int threads=25
     }
 
     // CHECK_CUDA_ERROR(cudaDeviceSynchronize());
-    CHECK_CUDA_ERROR(cudaMemcpy(result_h, result_d, size, cudaMemcpyDeviceToHost));
+    cudaMemcpy(result_h, result_d, size, cudaMemcpyDeviceToHost);
+    CHECK_CUDA_ERROR();
+    
 
     cudaFree(A_d);
     cudaFree(result_d);
