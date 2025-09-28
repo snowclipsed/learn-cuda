@@ -1,6 +1,6 @@
-#include "../tools/helpers.h"
-#include "../tools/image_processing.c"
-#include "../tools/macros.h"
+#include "../../tools/helpers.h"
+#include "../../tools/image_processing.c"
+#include "../../tools/macros.h"
 #include <cuda_runtime.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,13 +18,10 @@ __global__ void blur_kernel(unsigned char *img_in, unsigned char *img_out,
   int num_pixels = 0;
 
   if (row < height && col < width) {
-#pragma unroll
     for (int ch = 0; ch < channels; ch++) {
       pixel_value = 0;
       num_pixels = 0;
-#pragma unroll
       for (int blur_row = -BLUR_SIZE; blur_row <= BLUR_SIZE; blur_row++) {
-#pragma unroll
         for (int blur_col = -BLUR_SIZE; blur_col <= BLUR_SIZE; blur_col++) {
           cur_row = row + blur_row;
           cur_col = col + blur_col;
