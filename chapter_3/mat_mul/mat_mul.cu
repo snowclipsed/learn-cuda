@@ -1,7 +1,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "mat_mul.cuh"
-#include "../tools/macros.h"
+#include "../../tools/macros.h"
 #include "cuda_runtime.h"
 
 // Simple matmul kernel
@@ -30,10 +30,21 @@ __global__ void matmul(float *A, float *B, float *C, int A_height, int common, i
 //     }
 // }
 
+
+//Write a kernel that has each thread produce one output matrix row. 
+// Fill in the execution configuration parameters for the design.
+// well the normal kernel works by calling a thread for each element of the output matrix
+// which works by each thread calculating the value of the element as p_value += A[row * common + k] + B[k * common + col]
+// then you store it at P[row * width + col]
+// now we want each thread to do this [width] times.
+// that means we will only have a thread for each row
+// that means we don't need a second dimension
 __global__ void mat_mul_row(float *A, float *B, float *C, int A_height, int common, int B_width) {
+      // each thread handles one row
     int row = blockDim.x * blockIdx.x + threadIdx.x;
     float C_value = 0;
-    if (row < A_height) {
+    if (row < A_height) { // we need M threads
+              // we will iterate across the width of the output row (N)
         for (int col = 0; col < B_width; col++) {
             C_value = 0;
             for (int i = 0; i < common; i++) {
