@@ -1,6 +1,6 @@
 // #include <stdio.h>
-#include "../tools/helpers.c"
-#include "../tools/macros.h"
+#include "../../tools/helpers.c"
+#include "../../tools/macros.h"
 #include <stdlib.h>
 #include "mat_mul.cuh"
 
